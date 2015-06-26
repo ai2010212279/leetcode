@@ -1,6 +1,8 @@
 /**
+ * leetcode No.228 Summary Ranges
  * @param {number[]} nums
  * @return {string[]}
+ *
  */
 var summaryRanges = function(nums) {
     if(nums.length === 0){
