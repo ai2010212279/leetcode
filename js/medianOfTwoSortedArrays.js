@@ -14,7 +14,6 @@ var findMedianSortedArrays = function(nums1, nums2) {
 var getMedianOfArray = function(nums){
     if(nums.length % 2 === 0){
         index = parseInt((nums.length - 1) / 2);
-
         number = (    parseFloat(nums[index])
                     + parseFloat(nums[index + 1])
                   ) / 2;
@@ -27,30 +26,21 @@ var getMedianOfArray = function(nums){
 
 var mergeSort = function(nums1,nums2){
 
-    minLength = Math.min(nums1.length,nums2.length)
-    i = 0;
-    j = 0;
     sortedArray = [];
-    while(i < nums1.length && j < nums2.length){
-        if(nums1[i] <= nums2[j]){
-            sortedArray.push(nums1[i]);
-            i++;
+    while(nums1.length > 0 && nums2.length > 0){
+        if(nums1[0] <= nums2[0]){
+            sortedArray.push(nums1[0]);
+            nums1.shift();
         }else{
-            sortedArray.push(nums2[j]);
-            j++;
+            sortedArray.push(nums2[0]);
+            nums2.shift();
         }
     }
 
-    if(i == nums1.length){
-
-        for(;j < nums2.length;j++){
-            sortedArray.push(nums2[j]);
-        }
+    if(nums1.length === 0){
+        sortedArray = sortedArray.concat(nums2);
     }else{
-
-        for(;i < nums1.length;i++){
-            sortedArray.push(nums1[i]);
-        }
+        sortedArray = sortedArray.concat(nums1);
     }
 
     return sortedArray;
