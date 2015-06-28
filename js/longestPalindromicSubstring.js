@@ -33,11 +33,35 @@ var longestPalindrome = function(s) {
     }else{
         string = '';
     }
-    return string;
+
+    middleLocation = -1;
+    maxPalindromicLength = 0;
+
+    for(i = 0 ; i < s.length;i++){
+        palindromicLength = 0;
+        while(s[i-palindromicLength] === s[i+palindromicLength]
+            && s[i-palindromicLength] != null
+            && s[i+palindromicLength] != null){
+            palindromicLength++;
+        }
+        if(palindromicLength > maxPalindromicLength){
+            maxPalindromicLength = palindromicLength;
+            middleLocation = i;
+        }
+    }
+    if(middleLocation != -1){
+        startLocation = middleLocation - maxPalindromicLength + 1;
+        endLocation = middleLocation + maxPalindromicLength - 1;
+        string1 = s.substring(startLocation,endLocation+1);
+    }else{
+        string1 = '';
+    }
+
+    return string.length > string1.length ? string : string1;
 
 };
 
-s = 'abccba';
+s = 'abccba1234321';
 
 a = longestPalindrome(s);
 console.log(a);
