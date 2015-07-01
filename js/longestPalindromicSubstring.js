@@ -10,58 +10,74 @@ No.5 Longest Palindromic Substring
  */
 var longestPalindrome = function(s) {
 
-    middleLocation = -1;
+    middleLocation = 0;
     maxPalindromicLength = 0;
-    for(i = 0 ;i < s.length - 1;i++){
+    repeatType = 1 ;// 0 => bb 1=>abcba
+    for(i = 0 ;i <= s.length - 1;i++){
         j = i + 1;
+        step0 = 0;
         palindromicLength = 0;
-        while(s[i-palindromicLength] === s[j+palindromicLength]
-            && s[i-palindromicLength] != null
-            && s[j+palindromicLength] != null){
-            palindromicLength++;
+
+        if(s[i-step0] === s[j+step0]){
+            while(s[i-step0] === s[j+step0]
+            && s[i-step0] != null
+            && s[j+step0] != null){
+                palindromicLength += 2;
+                step0++;
+            }
+            if(palindromicLength > maxPalindromicLength){
+                maxPalindromicLength = palindromicLength;
+                middleLocation = (i + j)/2;
+                repeatType = 0;
+            }
         }
-        if(palindromicLength > maxPalindromicLength){
-            maxPalindromicLength = palindromicLength;
+
+        step1 = 0;
+        palindromicLength1 = 0;
+
+        while(s[i-step1] === s[i+step1]
+            && s[i-step1] != null
+            && s[i+step1] != null){
+            if(palindromicLength1 === 0){
+                palindromicLength1++;
+            }else{
+                palindromicLength1 += 2;
+            }
+            step1++;
+        }
+
+        if(palindromicLength1 > maxPalindromicLength){
+            maxPalindromicLength = palindromicLength1;
             middleLocation = i;
+            repeatType = 1;
         }
     }
 
-    if(middleLocation != -1){
-        startLocation = middleLocation - maxPalindromicLength + 1;
-        endLocation = middleLocation + maxPalindromicLength;
-        string = s.substring(startLocation,endLocation+1);
+    if(repeatType === 0){
+        startLocation = Math.ceil(middleLocation) - (maxPalindromicLength/2);
+        string = s.substr(startLocation,maxPalindromicLength);
+    }else if(repeatType === 1){
+        startLocation = middleLocation - ((maxPalindromicLength-1)/2);
+        string = s.substr(startLocation,maxPalindromicLength);
     }else{
         string = '';
     }
 
-    middleLocation = -1;
-    maxPalindromicLength = 0;
-
-    for(i = 0 ; i < s.length;i++){
-        palindromicLength = 0;
-        while(s[i-palindromicLength] === s[i+palindromicLength]
-            && s[i-palindromicLength] != null
-            && s[i+palindromicLength] != null){
-            palindromicLength++;
-        }
-        if(palindromicLength > maxPalindromicLength){
-            maxPalindromicLength = palindromicLength;
-            middleLocation = i;
-        }
-    }
-    if(middleLocation != -1){
-        startLocation = middleLocation - maxPalindromicLength + 1;
-        endLocation = middleLocation + maxPalindromicLength - 1;
-        string1 = s.substring(startLocation,endLocation+1);
-    }else{
-        string1 = '';
-    }
-
-    return string.length > string1.length ? string : string1;
+    return string;
 
 };
 
-s = 'abccba1234321';
+s = 'bb13431abc';
 
 a = longestPalindrome(s);
 console.log(a);
+
+s = 'abb';
+
+a = longestPalindrome(s);
+console.log(a);
+
+s = 'a';
+a = longestPalindrome(s);
+console.log(a);
+
