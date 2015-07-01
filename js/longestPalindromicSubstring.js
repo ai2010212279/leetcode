@@ -9,63 +9,37 @@ No.5 Longest Palindromic Substring
  * @return {string}
  */
 var longestPalindrome = function(s) {
-
-    middleLocation = 0;
     maxPalindromicLength = 0;
-    repeatType = 1 ;// 0 => bb 1=>abcba
-    for(i = 0 ;i <= s.length - 1;i++){
-        j = i + 1;
-        step0 = 0;
-        palindromicLength = 0;
-
-        if(s[i-step0] === s[j+step0]){
-            while(s[i-step0] === s[j+step0]
-            && s[i-step0] != null
-            && s[j+step0] != null){
-                palindromicLength += 2;
-                step0++;
-            }
-            if(palindromicLength > maxPalindromicLength){
-                maxPalindromicLength = palindromicLength;
-                middleLocation = (i + j)/2;
-                repeatType = 0;
-            }
+    longestString = '';
+    for(i = 0 ;i < s.length ;i++){
+        string = findPalindromic(s,i,i);
+        if(string.length > maxPalindromicLength){
+            maxPalindromicLength = string.length;
+            longestString  = string;
         }
 
-        step1 = 0;
-        palindromicLength1 = 0;
-
-        while(s[i-step1] === s[i+step1]
-            && s[i-step1] != null
-            && s[i+step1] != null){
-            if(palindromicLength1 === 0){
-                palindromicLength1++;
-            }else{
-                palindromicLength1 += 2;
-            }
-            step1++;
-        }
-
-        if(palindromicLength1 > maxPalindromicLength){
-            maxPalindromicLength = palindromicLength1;
-            middleLocation = i;
-            repeatType = 1;
+        string = findPalindromic(s,i,i+1);
+        if(string.length > maxPalindromicLength){
+            maxPalindromicLength = string.length;
+            longestString  = string;
         }
     }
 
-    if(repeatType === 0){
-        startLocation = Math.ceil(middleLocation) - (maxPalindromicLength/2);
-        string = s.substr(startLocation,maxPalindromicLength);
-    }else if(repeatType === 1){
-        startLocation = middleLocation - ((maxPalindromicLength-1)/2);
-        string = s.substr(startLocation,maxPalindromicLength);
-    }else{
-        string = '';
+    return longestString;
+}
+
+function findPalindromic (string,leftMiddle,rightMiddle) {
+    while(string[leftMiddle] === string[rightMiddle]
+            && leftMiddle >= 0
+            && rightMiddle < string.length){
+        leftMiddle--;
+        rightMiddle++;
     }
+    pString = string.substr(leftMiddle+1,rightMiddle-leftMiddle-1);//正确的长度为(right-1-(letf+1)+1)
+    // console.log(leftMiddle-step1,rightMiddle-leftMiddle+2*step1);
+    return pString;
 
-    return string;
-
-};
+}
 
 s = 'bb13431abc';
 
@@ -77,7 +51,7 @@ s = 'abb';
 a = longestPalindrome(s);
 console.log(a);
 
-s = 'a';
+s = 'aa';
 a = longestPalindrome(s);
 console.log(a);
 
