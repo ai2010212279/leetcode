@@ -4,7 +4,8 @@ No.2 Add Two Numbers
 
 Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 0 -> 8
-
+具体思路：对应的位置相加，如果有超过10 的数字，十位以上进入下一次进行运算。比如：当前计算的结果为12,则本节点结果为2，下一节点除了正常运算外，还需要加1。
+值得注意的是，循环结束的条件不是两个链表均到达最末节点，而是两个链表都到达最末节点，并且当前数字小于10。
  * Definition for singly-linked list.
  * function ListNode(val) {
  *     this.val = val;
