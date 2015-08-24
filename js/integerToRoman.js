@@ -19,30 +19,29 @@ var intToRoman = function(num) {
     romanMap[900] = "CM";
     romanMap[1000] = "M";
 
-    i = 0;
+    i = 1;
     s = "";
     while( num > 0){
         unit = num % 10;
         leftFive = unit % 5;
         timesFive = unit / 5;
-        tenPower = (i === 0 ? 1 : i * 10);
         if( leftFive > 0 && leftFive < 4){//1,2,3
             tempS = "";
-            if( timesFive > 1){tempS = romanMap[ tenPower* 5];}
-            for(j = 0;j < (leftFive);j++) {
-                tempS += romanMap[tenPower];
+            if( timesFive > 1){tempS = romanMap[ i * 5 ];}
+            for(j = 0;j < leftFive;j++) {
+                tempS += romanMap[i];
             }
             s = tempS + s;
         }else if( leftFive === 4 || unit === 5){//4,9,5
-            s = romanMap[tenPower * unit] + s;
+            s = romanMap[ i * unit ] + s;
         }
         num = parseInt(num / 10);
-        i++;
+        i *= 10;
     }
 
     return s;
 };
 
 
-a = intToRoman(44);
+a = intToRoman(250);
 console.log(a);
