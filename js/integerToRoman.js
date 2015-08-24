@@ -25,20 +25,16 @@ var intToRoman = function(num) {
         unit = num % 10;
         leftFive = unit % 5;
         timesFive = unit / 5;
-        tenPower = Math.pow(10,i);
-        if( leftFive > 0 && leftFive < 4){
+        tenPower = (i === 0 ? 1 : i * 10);
+        if( leftFive > 0 && leftFive < 4){//1,2,3
             tempS = "";
             if( timesFive > 1){tempS = romanMap[ tenPower* 5];}
-            for(j = 0;j < (leftFive);j++) {tempS += romanMap[tenPower];}
-                s = tempS + s;
-        }else if((leftFive) == 4){
-            if(timesFive > 1){
-                s = romanMap[tenPower * 9] + s;
-            }else{
-                s = romanMap[tenPower * 4] + s;
+            for(j = 0;j < (leftFive);j++) {
+                tempS += romanMap[tenPower];
             }
-        }else if(unit == 5){
-            s = romanMap[tenPower * 5] + s;
+            s = tempS + s;
+        }else if( leftFive === 4 || unit === 5){//4,9,5
+            s = romanMap[tenPower * unit] + s;
         }
         num = parseInt(num / 10);
         i++;
@@ -48,5 +44,5 @@ var intToRoman = function(num) {
 };
 
 
-a = intToRoman(a);
+a = intToRoman(44);
 console.log(a);
