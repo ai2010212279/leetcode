@@ -4,18 +4,17 @@
  */
 var threeSum = function(nums) {
     nums = unique3(nums);
+    nums = nums.sort(function(a,b){
+        return a - b;
+    })
     numsMap = retainHash(nums);
     resultArr = [];
     uniqueKeys = [];
     for(i = 0;i < nums.length;i++){
-        for(j = 0;j < nums.length;j++){
-            if(i === j){
-                continue;
-            }
-
+        for(j = i+1;j < nums.length;j++){
             value3 = 0 - nums[i] - nums[j];
             tempArr = [nums[i],nums[j],value3];
-            tempArr.sort(function(a,b){
+            tempArr.sort(function(a,b){ 
                             return a - b;
                         });
             if(uniqueKeys[tempArr]){
