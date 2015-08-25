@@ -28,7 +28,7 @@ var isMatch = function(s, p) {
 
         if(i >= s.length && j >= p.length ){
             console.log(4);
-            // regularFlag = true;
+            // regularFlag = true       ;
             whileFlag = false;
         }
 
