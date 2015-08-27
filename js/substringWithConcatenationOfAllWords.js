@@ -11,6 +11,9 @@ You should return the indices: [0,9].
 
 1.substr 3 个字符，判断是否在字符串数组之中，在，+n，不在，游标右移(i++)，长度计数器j++;
 2.j++等于 数组长度时，判断结果值。
+
+时间复杂度大概是 O(m^2*n) m为words的长度,n是s的长度
+考虑最差情况：每次搜索子串相当于游标在i=n处进行了m次子串比较，和1次子串搜索(复杂度为O(m))即:m^2*n，
  * @param {string} s
  * @param {string[]} words
  * @return {number[]}
@@ -21,7 +24,7 @@ var findSubstring = function(s, words) {
     var wordLength = words[0].length;
     var totalSum = ((0 + wordsLength-1)*wordsLength) / 2;
     var resultList = [];
-    for(i = 0,strNumberCount = 0;i < s.length;){
+    for(j = 0,i = 0,strNumberCount = 0;i < s.length;j++){
         startString = s.substr(i,wordLength);
         strIndex = words.indexOf(startString);
         if(strIndex >= 0 && strNumberCount < wordsLength){
@@ -47,6 +50,7 @@ var findSubstring = function(s, words) {
         }
 
     }
+    console.log(j,s.length * words.length);
     return resultList;
 };
 
@@ -55,7 +59,7 @@ c = ["foo","bar"];
 b = findSubstring(a,c);
 console.log(b);
 
-a = "foo,barfoobargetfoo123123getbarfoo";
+a = "foo,barfoobargetfoo12316sbarfoo";
 c = ["foo","bar","get"];
 b = findSubstring(a,c);
 console.log(b);

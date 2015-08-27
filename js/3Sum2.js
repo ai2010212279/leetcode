@@ -1,6 +1,8 @@
 /**
  * @param {number[]} nums
  * @return {number[][]}
+
+ 求sum的题目关键在于排序，排序过后通过遍历即可得到。但是时间复杂度可能会很高
  */
 var threeSum = function(nums) {
     nums = unique3(nums);

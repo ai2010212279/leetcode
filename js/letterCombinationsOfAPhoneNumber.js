@@ -1,6 +1,8 @@
 /**
  * @param {string} digits
  * @return {string[]}
+
+ 时间复杂度在 O(3^n) - O(4^n)之间，最差为O(4^n)
  */
 
 
@@ -44,9 +46,8 @@ var letterCombinations = function(digits) {
 };
 
 
-a = "1204";
+a = "2324";
 b = letterCombinations(a);
-
-
 console.log(b);
+console.log(b.length);
 
