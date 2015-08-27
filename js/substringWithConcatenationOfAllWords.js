@@ -9,16 +9,20 @@ words: ["foo", "bar"]
 You should return the indices: [0,9].
 (order does not matter).
 
-1.substr 3 个字符，判断是否在字符串数组之中，在，+n，不在，游标右移(i++)，长度计数器j++;
+1.substr 3 个字符，判断是否在字符串数组之中，在，+n，不在，游标右移(i++)，长度计数器+1;
 2.j++等于 数组长度时，判断结果值。
 
-时间复杂度大概是 O(m^2*n) m为words的长度,n是s的长度
-考虑最差情况：每次搜索子串相当于游标在i=n处进行了m次子串比较，和1次子串搜索(复杂度为O(m))即:m^2*n，
+时间复杂度大概是 O(m*n + m) m为words的长度,n是s的长度
+考虑最差情况：每次搜索子串相当于游标在i=n处进行了m次子串比较即:m*n，
  * @param {string} s
  * @param {string[]} words
  * @return {number[]}
  */
 var findSubstring = function(s, words) {
+    var wordsKeyMap = [];
+    for(i = 0; i < words.length;i++){
+        wordsKeyMap[words[i]] = i;
+    }
     var strIndexCount = 0;
     var wordsLength = words.length;
     var wordLength = words[0].length;
@@ -26,7 +30,7 @@ var findSubstring = function(s, words) {
     var resultList = [];
     for(j = 0,i = 0,strNumberCount = 0;i < s.length;j++){
         startString = s.substr(i,wordLength);
-        strIndex = words.indexOf(startString);
+        strIndex = wordsKeyMap[startString];
         if(strIndex >= 0 && strNumberCount < wordsLength){
             if(strNumberCount == 0){
                 locationStack = i;
@@ -50,7 +54,6 @@ var findSubstring = function(s, words) {
         }
 
     }
-    console.log(j,s.length * words.length);
     return resultList;
 };
 
