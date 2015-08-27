@@ -16,22 +16,21 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
  */
 var nextPermutation = function(nums) {
     lastestIndex = nums.length - 1;
-    for(i = nums.length - 2;i > -1;i--){
-        if(nums[lastestIndex] > nums[i]){
-            temp = nums[i];
-            nums[i] = nums[lastestIndex];
-            nums[lastestIndex] = temp;
-            return nums;
+    for(j = lastestIndex;j > 0;j--){
+        for(i = nums.length - 2;i > -1;i--){
+            if(nums[j] > nums[i]){
+                temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;
+                return nums;
+            }
         }
     }
 
-//有可能是不合适的
-    return nums.sort(function(a,b){
-        return a > b ? 1 : -1;
-    });
-};
+    return nums.reverse();
+}
 
-a = [1,2,3];
+a = [1,3,1];
 b = nextPermutation(a);
 console.log(b);
 

@@ -57,6 +57,6 @@ a = isMatch("aab", "c*a*b");
 console.log(a);
 a = isMatch('aa','*');
 console.log(a);
-a = isMatch('aab','a*');
+a = isMatch('aa','a*');
 console.log(a);
 
