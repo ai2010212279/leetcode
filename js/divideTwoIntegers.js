@@ -45,7 +45,6 @@ var divide = function(dividend, divisor) {
     var tempIndex = result;
     diff = dividend - _divisor;
     while(diff > 0 && tempIndex > 0){
-    // console.log(diff,_divisor,tempIndex);
         if(diff >= _divisor){
             diff -= _divisor;
             result += tempIndex;
