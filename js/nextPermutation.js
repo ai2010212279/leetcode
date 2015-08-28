@@ -30,7 +30,7 @@ var nextPermutation = function(nums) {
     return nums.reverse();
 }
 
-a = [1,3,1];
+a = [1,3,1,4];
 b = nextPermutation(a);
 console.log(b);
 
