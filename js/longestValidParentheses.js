@@ -8,26 +8,15 @@ Another example is ")()())", where the longest valid parentheses substring is "(
 
  * @param {string} s
  * @return {number}
+ 目前是错误的
  */
 var longestValidParentheses = function(s) {
     var maxLength = 0;
     var tempLength = 0;
     var calculate = 0;
-    for(i = 0;i < s.length;i++){
-        if(s[i] == '('){
-            calculate++;
-        }else{
-            calculate--;
-            if(calculate >= 0){
-                tempLength += 2;
-            }else{
-                maxLength = tempLength > maxLength ? tempLength : maxLength;
-                calculate = 0;
-                tempLength = 0;
-            }
-        }
+    for(i = 0,j = 0;i < s.length;){
+
     }
-    return tempLength > maxLength ? tempLength : maxLength;
 };
 
 a = '(((())';
@@ -38,7 +27,7 @@ a = '()()()(((())))';
 b = longestValidParentheses(a);
 console.log(b);
 
-a = '((((((';
+a = '(((((())))))';
 b = longestValidParentheses(a);
 console.log(b);
 
@@ -49,3 +38,14 @@ console.log(b);
 a = ')())';
 b = longestValidParentheses(a);
 console.log(b);
+
+a = '(()';
+b = longestValidParentheses(a);
+console.log(b);
+
+
+a = '()()((';
+b = longestValidParentheses(a);
+console.log(b);
+
+

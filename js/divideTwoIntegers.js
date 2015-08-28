@@ -35,9 +35,8 @@ var divide = function(dividend, divisor) {
             _divisor = _divisorTemp;
             result = resultTemp;
         }
-
     }
-    if(flag !== 0){
+    if(flag !== 0 && dividend !== divisor){
         _divisor >>= 1;
         result >>= 1;
     }
@@ -56,7 +55,7 @@ var divide = function(dividend, divisor) {
 
     //2^31 - 1;
     result = minus > 0 ? -result : result;
-    if(result > 2147483647) return -2147483648;
+    if(result > 2147483647) return 2147483647;
     return result;
 };
 
@@ -95,6 +94,12 @@ c = divide(MAX_INT,-1);
 console.log(c);
 
 c = divide(MAX_INT,1);
+console.log(c);
+
+c = divide(1,1);
+console.log(c);
+
+c = divide(1,-1);
 console.log(c);
 
 

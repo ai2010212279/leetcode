@@ -40,37 +40,45 @@ var nextPermutation = function(nums) {
                 exchangeIndex--;
             }
         }
-        return nums;
     }else{
-        return nums.reverse();
+        return reverseArr(nums);
     }
 
 }
 
-a = [1,3,1,4];
-b = nextPermutation(a);
-console.log(b);
+function reverseArr(arr){
+    for(i = 0,j = arr.length -1;i < j;i++,j--){
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    return arr;
+}
 
-a = [3,2,1];
-b = nextPermutation(a);
-console.log(b);
+// a = [1,3,1,4];
+// b = nextPermutation(a);
+// console.log(b);
 
-a = [1,1,5];
+a = [3,2,1,0];
 b = nextPermutation(a);
-console.log(b);
+console.log(a);
 
-a = [1,1,1,0];
-b = nextPermutation(a);
-console.log(b);
+// a = [1,1,5];
+// b = nextPermutation(a);
+// console.log(b);
 
-a = [1,3,2,4];
-b = nextPermutation(a);
-console.log(b);
+// a = [1,1,1,0];
+// b = nextPermutation(a);
+// console.log(b);
 
-a = [1,3,4,2];
-b = nextPermutation(a);
-console.log(b);
+// a = [1,3,2,4];
+// b = nextPermutation(a);
+// console.log(b);
+
+// a = [1,3,4,2];
+// b = nextPermutation(a);
+// console.log(b);
 
 a = [1];
 b = nextPermutation(a);
-console.log(b);
+console.log(a);
