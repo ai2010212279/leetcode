@@ -23,61 +23,62 @@ You should return the indices: [0,9].
 var findSubstring = function(s, words) {
     var wordsKeyMap = [];
     for(i = 0; i < words.length;i++){
-        wordsKeyMap[words[i]] = i;
+        wordsKeyMap[words[i]] = 1;
     }
-    var strIndexCount = 0;
+    words.sort();
     var wordsLength = words.length;
     var wordLength = words[0].length;
-    var totalSum = ((0 + wordsLength-1)*wordsLength) / 2;
     var resultList = [];
-    for(j = 0,i = 0,strNumberCount = 0;i < s.length;j++){
-        startString = s.substr(i,wordLength);
+    var tempArr = [];
+
+    for(var j = 0,i = 0,strNumberCount = 0;j < s.length ;){
+        startString = s.substr(j,wordLength);
         strIndex = wordsKeyMap[startString];
-        if(strIndex >= 0 && strNumberCount < wordsLength){
-            if(strNumberCount == 0){
-                locationStack = i;
-            }
-            strIndexCount += strIndex
-            strNumberCount++;
-            if(strNumberCount === wordsLength && strIndexCount === totalSum){
-                resultList.push(locationStack);
-                i = locationStack + 1;
-                locationStack = i;
-                strNumberCount = 0;
-                strIndexCount = 0;
+        if(strIndex){
+            tempArr.push(startString);
+            console.log(tempArr);
+            if(tempArr.length === words.length){
+                if(tempArr.sort().toString() === words.toString()){
+                    resultList.push(i);//加入string
+                }
+                i++;
+                j = i;
+                tempArr = [];
             }else{
-                i += wordLength;
+                j += wordLength;
             }
         }else{
-            i = locationStack + 1;
-            locationStack = i;
-            strNumberCount = 0;
-            strIndexCount = 0;
+            tempArr = [];
+            i++;
+            j = i;
         }
-
     }
     return resultList;
 };
 
-a = "foobarfoobar";
-c = ["foo","bar"];
+// a = "123foobarfoobar";
+// c = ["foo","bar"];
+// b = findSubstring(a,c);
+// console.log(b);
+
+// a = "foo,barfoobargetfoo12316sbarfoo";
+// c = ["foo","bar","get"];
+// b = findSubstring(a,c);
+// console.log(b);
+
+// a = "abcd";
+// c = ['abcd','dddd'];
+// b = findSubstring(a,c);
+// console.log(b);
+
+// a = "bbbbbba";
+// c = ['bbb','bba'];
+// b = findSubstring(a,c);
+// console.log(b);
+
+a = "abcabcabcdddddd";
+c = ['abc','abc','ddd','ddd']
 b = findSubstring(a,c);
 console.log(b);
-
-a = "foo,barfoobargetfoo12316sbarfoo";
-c = ["foo","bar","get"];
-b = findSubstring(a,c);
-console.log(b);
-
-a = "abcd";
-c = ['abcd','dddd'];
-b = findSubstring(a,c);
-console.log(b);
-
-a = "bbbbbba";
-c = ['bbb','bba'];
-b = findSubstring(a,c);
-console.log(b);
-
 
 
