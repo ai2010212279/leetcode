@@ -11,7 +11,10 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 3,2,1 → 1,2,3
 1,1,5 → 1,5,1
 
-思路:找到左边的最大逆序序列,如[2,1,4,2,1](设为a)中的[4,2,1](设为b)。此时需要进行交换的数据是a[1]=1,b中从左边开始算起大于a[1]的数，即b[1] = 2；
+思路:
+1.找到左边的最大逆序序列,如[2,1,4,2,1](设为a)中的[4,2,1](设为b)。
+2.此时需要进行交换的数据是a[1]=1,b中从右边开始算起大于a[1]的数，即b[1] = 2；
+3.将b进行翻转
 时间复杂度：O(n);
 
 错误
@@ -29,57 +32,70 @@ var nextPermutation = function(nums) {
         }
     }
 
-    if(descMaxIndex !== 0){
-        var exchangeIndex = nums.length - 1;
+
+    var exchangeIndex = nums.length - 1;
+    if(descMaxIndex-1 >= 0){
         while(exchangeIndex > descMaxIndex-1){
             if(nums[exchangeIndex] > nums[descMaxIndex-1]){
-                temp = nums[exchangeIndex];
-                nums[exchangeIndex] = nums[descMaxIndex-1];
-                nums[descMaxIndex-1] = temp;
+                temp = nums[descMaxIndex-1];
+                nums[descMaxIndex-1] = nums[exchangeIndex];
+                nums[exchangeInex] = temp;
+                reverseArr(nums,descMaxIndex,nums.length - 1);
                 break;
             }else{
                 exchangeIndex--;
             }
         }
     }else{
-        return reverseArr(nums);
+        reverseArr(nums,0,nums.length-1);
     }
-
+    console.log(nums);
 }
 
-function reverseArr(arr){
-    for(i = 0,j = arr.length -1;i < j;i++,j--){
-        temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+function reverseArr(arr,left,right){
+    while(left < right){
+        temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
+        left++;
+        right--;
     }
-    return arr;
 }
 
-// a = [1,3,1,4];
-// b = nextPermutation(a);
-// console.log(b);
 
-a = [3,2,1,0];
+
+a = [1,3,1,4];//1341
 b = nextPermutation(a);
-console.log(a);
 
-// a = [1,1,5];
-// b = nextPermutation(a);
-// console.log(b);
+a = [2,3,1];//312
+b = nextPermutation(a);
 
-// a = [1,1,1,0];
-// b = nextPermutation(a);
-// console.log(b);
+a = [1,1,5];//151
+b = nextPermutation(a);
+
+a = [1,1,1,0];//0111
+b = nextPermutation(a);
 
 // a = [1,3,2,4];
 // b = nextPermutation(a);
-// console.log(b);
 
-// a = [1,3,4,2];
-// b = nextPermutation(a);
-// console.log(b);
-
-a = [1];
+a = [1,3,2,5,3,2];//1,3,3,2,2,5
 b = nextPermutation(a);
-console.log(a);
+
+// a = [1,2];
+// b = nextPermutation(a);
+
+// a = [1,3,2];
+// nextPermutation(a);
+
+// a = [1,4,3,2];
+// nextPermutation(a);
+
+// a = [2,3,2];
+// nextPermutation(a);
+
+// a  = [3,2,1]
+// nextPermutation(a);
+
+// a = [5,4,7,5,3,2];//[5,5,2,3,4,7]
+// nextPermutation(a);
