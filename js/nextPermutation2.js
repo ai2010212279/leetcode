@@ -16,8 +16,8 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 2.此时需要进行交换的数据是a[1]=1,b中从右边开始算起大于a[1]的数，即b[1] = 2；
 3.将b进行翻转
 时间复杂度：O(n);
+目前需要精简代码，运行时间太高
 
-错误
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
