@@ -8,7 +8,7 @@ Another example is ")()())", where the longest valid parentheses substring is "(
 
  * @param {string} s
  * @return {number}
- 目前是错误的
+
  */
 // var longestValidParentheses = function(s) {
 //     var leftDeep = 0,rightDeep = 0;
