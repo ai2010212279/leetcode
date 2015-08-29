@@ -14,6 +14,7 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 思路:找到左边的最大逆序序列,如[2,1,4,2,1](设为a)中的[4,2,1](设为b)。此时需要进行交换的数据是a[1]=1,b中从左边开始算起大于a[1]的数，即b[1] = 2；
 时间复杂度：O(n);
 
+错误
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */

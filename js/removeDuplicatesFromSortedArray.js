@@ -14,15 +14,35 @@ Your function should return length = 2, with the first two elements of nums bein
  * @return {number}
  */
 var removeDuplicates = function(nums) {
-    for(i = 0,j = 0;i < nums.length;i++){
-        if(nums[i] != nums[i+1]){
-            j++;
+    var head = 0,tail = head+1;
+    while(tail < nums.length){
+        if(nums[head] == nums[tail]){
+            tail++;
+        }else{
+            nums[head+1] = nums[tail];
+            head++;
+            tail++;
         }
     }
-    return j;
+    return head+1;
 };
 
-a = [1,2,3,3];
-
+a = [1,1,2,3,3,3,4,4,5,5,5,5];
 b = removeDuplicates(a);
 console.log(b);
+
+b = removeDuplicates([1,1]);
+console.log(b);
+
+b = removeDuplicates([1,2,3,4,5,6,6,6,6,6]);
+console.log(b);
+
+b = removeDuplicates([1])
+console.log(b);
+
+b = removeDuplicates([1,2,5]);
+console.log(b);
+
+b = removeDuplicates([1,1,1,2,5]);
+console.log(b);
+
