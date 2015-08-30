@@ -45,38 +45,40 @@ var isMatch = function(s, p) {
 
 
 
-a = isMatch("aa","a");//false
-console.log(a);
-a = isMatch("aaa","aa");//false
-console.log(a);
-a = isMatch('aa','*');//false
-console.log(a);
-a = isMatch('ab','.*c');//false
-console.log(a);
-a = isMatch('a','ab*c***');//false
-console.log(a);
-a = isMatch('a','.*..');//false
-console.log(a);
-a = isMatch("aa", "a*");//true
-console.log(a);
-a = isMatch("aa", ".*");//true
-console.log(a);
-a = isMatch("aa","aa");//true
-console.log(a);
-a = isMatch("ab", ".*");//true
-console.log(a);
-a = isMatch("aab", "c*a*b");//true
-// a = isMatch("ab",".*c");
-console.log(a);
-a = isMatch('a','a*');//true
-console.log(a);
-a = isMatch('aaa','a*aaa');//true
-console.log(a);
-a = isMatch('abcdef','.*def');//true
-console.log(a);
-a = isMatch("aaa", "ab*a*c*a");//true
-console.log(a);
-a = isMatch('aaaa','a*aaaaa*');//true
+// a = isMatch("aa","a");//false
+// console.log(a);
+// a = isMatch("aaa","aa");//false
+// console.log(a);
+// a = isMatch('aa','*');//false
+// console.log(a);
+// a = isMatch('ab','.*c');//false
+// console.log(a);
+// a = isMatch('a','ab*c***');//false
+// console.log(a);
+// a = isMatch('a','.*..');//false
+// console.log(a);
+// a = isMatch("aa", "a*");//true
+// console.log(a);
+// a = isMatch("aa", ".*");//true
+// console.log(a);
+// a = isMatch("aa","aa");//true
+// console.log(a);
+// a = isMatch("ab", ".*");//true
+// console.log(a);
+// a = isMatch("aab", "c*a*b");//true
+// // a = isMatch("ab",".*c");
+// console.log(a);
+// a = isMatch('a','a*');//true
+// console.log(a);
+// a = isMatch('aaa','a*aaa');//true
+// console.log(a);
+// a = isMatch('abcdef','.*def');//true
+// console.log(a);
+// a = isMatch("aaa", "ab*a*c*a");//true
+// console.log(a);
+// a = isMatch('aaaa','a*aaaaa*');//true
+// console.log(a);
+a = isMatch("aaaccbccbcbaabcaa", "c*a*.*a*.*c*.c*.a*c");
 console.log(a);
 
 
