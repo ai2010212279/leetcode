@@ -4,64 +4,71 @@
  * @return {boolean}
  */
 var isMatch = function(s, p) {
-    i = 0;
-    j = 0;
-    while(i < s.length && j < p.length){
-        if(p[j] === "*"){
-            if(p[j-1] === '.'){
-                i++;
-                if(j === p.length -1){
-                    j++;
-                }
-            }else if(p[j-1] === s[i]){
-                i++;
-                if(j === p.length -1){
-                    j++;
-                }
-            }else{
-                j++;
-            }
-        }else{
-            if(p[j] === '.'){
-                j++;
-                i++;
-            }else if(p[j] === s[i]){
-                j++;
-                i++;
-            }else{
-                j++;
-            }
+    a = compare(s,0,p,0);
+
+    return a ;
+    function compare(s,i,p,j){
+// console.log('b',i,j);
+        if(i === s.length && j === p.length){
+            return true;
         }
-    }
-    if(j == p.length && i == s.length){
-        return true;
-    }else{
-        return false;
+
+        if(p[j]!=='*' && p[j+1]==='*'){
+            result = false;
+            // console.log('a',i,j);
+            while(i < s.length && j+1 < p.length){
+                console.log(i,j);
+                result = compare(s,i,p,j+2);
+                if(result){
+                    return result;
+                }
+                ++i;
+            }
+            return compare(s,i,p,j);
+        }else if(p[j] === '.'){
+            return compare(s,i+1,p,j+1);
+        }else if(p[j] === s[i]){
+            return compare(s,i+1,p,j+1);
+        }else{
+            return false;
+        }
+
     }
 };
 
-// a = isMatch("aa","a");
+
+
+// a = isMatch("aa","a");//false
 // console.log(a);
-// a = isMatch("aa","aa");
+// a = isMatch("aaa","aa");//false
 // console.log(a);
-// a = isMatch("aaa","aa");
+// a = isMatch('aa','*');//false
 // console.log(a);
-// a = isMatch("aa", "a*");
+// a = isMatch('ab','.*c');//false
 // console.log(a);
-// a = isMatch("aa", ".*");
+// a = isMatch('a','ab*c***');//false
 // console.log(a);
-// a = isMatch("ab", ".*");
+// a = isMatch("aa", "a*");//true
 // console.log(a);
-// a = isMatch("aab", "c*a*b");
+// a = isMatch("aa", ".*");//true
+// console.log(a);
+// a = isMatch("aa","aa");//true
+// console.log(a);
+// a = isMatch("ab", ".*");//true
+// console.log(a);
+// a = isMatch("aab", "c*a*b");//true
 // // a = isMatch("ab",".*c");
 // console.log(a);
-// a = isMatch('aa','*');
+// a = isMatch('a','a*');//true
 // console.log(a);
-// a = isMatch('aa','a*');
+// a = isMatch('aaa','a*aaa');//true
 // console.log(a);
-
-// a = isMatch('ab','.*c');
+// a = isMatch('abcdef','.*def');//true
 // console.log(a);
-
-a = isMatch('aaa','a*a');
+// a = isMatch("aaa", "ab*a*c*a");//true
+// console.log(a);
+// a = isMatch('aaaa','a*aaaaa*');//true
+// console.log(a);
+a = isMatch('a','.*..');
 console.log(a);
+

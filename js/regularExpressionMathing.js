@@ -11,71 +11,45 @@
 var isMatch = function(s, p) {
     i = 0;
     j = 0;
-    whileFlag = true;
-    regularFlag = true;
-    while(whileFlag){
-        if(j>p.length && i <= s.length) {
-            console.log(1);
-            regularFlag = false;
-            whileFlag = false;
-        }
-
-        currentChar = s[i]
-        if(i > s.length && j < p.length){
-            console.log(2);
-            currentChar = "";
-        }
-
-        if(i >= s.length && j >= p.length ){
-            console.log(4);
-            // regularFlag = true       ;
-            whileFlag = false;
-        }
-
-        if(p[j] == "."){
-            console.log(5);
-            i++;
-            j++;
-            continue;
-        }
-        if(p[j] == "*"){
-            console.log(6);
-            while(currentChar === s[i-1]){
-            console.log(7);
+    while(i < s.length && j < p.length){
+        if(p[j] === '*'){
+            while((s[i] === p[j-1] || p[j-1] === '.') && i < s.length){
                 i++;
             }
+            var tempIndex = 0;
+            while((p[j+tempIndex+1] === p[j-1] || p[j-1] ==='.')
+                && p[j+tempIndex+1] != '*'
+                && j+tempIndex+1 < p.length){
+                tempIndex++;
+            }
+            if(p[j+tempIndex+1] === '*'){
+                tempIndex--;
+            }
             j++;
-                console.log(i,j);
-            continue;
-        }
-
-        if(currentChar === p[j] && currentChar != undefined){
-            console.log(8);
-            console.log(currentChar,p[j]);
+            i -= tempIndex;
+            console.log(i,j);
+        }else if(p[j] === '.'){
             i++;
             j++;
-            continue;
+        }else if(s[i] === p[j]){
+            i++;
+            j++;
         }else{
-            if(p[j+1] === "*"){
-            console.log(9);
-                while(currentChar === s[i-1]){
-            console.log(10);
-                    i++;
-                }
-                j++;
-                console.log(i,j);
-                continue;
-            }else{
-            console.log(11);
-                regularFlag = false;
-                whileFlag = false;
-                continue;
-            }
-
+            j++;
         }
     }
-
-    return regularFlag;
+console.log(i,j);
+    if(i === s.length && p[j] === '*'){
+        j++;
+    }else if( i=== s.length && p[j+1] === '*'){
+        while(p[j+1] === '*'){
+            if(p[j] === '*'){
+                break;
+            }
+            j += 2;
+        }
+    }
+    return i===s.length && j===p.length;
 };
 
 // a = isMatch("aa","a");
@@ -84,7 +58,47 @@ var isMatch = function(s, p) {
 // a = isMatch("aa", "a*");
 // a = isMatch("aa", ".*");
 // a = isMatch("ab", ".*");
-a = isMatch("aab", "c*a*b");
+// a = isMatch("aab", "c*a*b");
+// console.log(a);
+// a = isMatch('a','a*');//true
+// console.log(a);
 // a = isMatch("ab",".*c");
-console.log(a);
+// console.log(a);
 
+// a = isMatch("aa","a");//false
+// console.log(a);
+// a = isMatch("aa","aa");//true
+// console.log(a);
+// a = isMatch("aaa","aa");//false
+// console.log(a);
+// a = isMatch("aa", "a*");//true
+// console.log(a);
+// a = isMatch("aa", ".*");//true
+// console.log(a);
+// a = isMatch("ab", ".*");//true
+// console.log(a);
+// a = isMatch("aab", "c*a*b");//true
+// // a = isMatch("ab",".*c");
+// console.log(a);
+// a = isMatch('aa','*');//false
+// console.log(a);
+// a = isMatch('a','a*');//true
+// console.log(a);
+
+// a = isMatch('ab','.*c');//false
+// console.log(a);
+
+// a = isMatch('aaa','a*a');//true
+// console.log(a);
+
+// a = isMatch('abcdef','.*def');//true
+// console.log(a);
+
+// a = isMatch('aaaa','a*aaaaa*b');//true
+// console.log(a);
+
+// a = isMatch('a','ab*c***');//false
+// console.log(a);
+
+a = isMatch("aaa", "ab*a*c*a");//true
+console.log(a);
