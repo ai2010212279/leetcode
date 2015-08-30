@@ -7,10 +7,35 @@ var threeSum = function(nums) {
         return a > b ? 1 : -1;
     });
     result = [];
-    var left = 0,right = nums.length - 1;
-    var middel = i + 1;
-    while(left < right && middel < right){
+    for(i = 0;i < nums.length - 2;i++){
+        if(nums[i] === nums[i-1]) {
+            continue;
+        }
+        left = i+ 1;
+        right = nums.length - 1;
+        while(left < right){
+            temp = [];
+            if(nums[left]+nums[i]+nums[right] === 0){
+                temp.push(nums[i]);
+                temp.push(nums[left]);
+                temp.push(nums[right]);
+                result.push(temp);
 
+                while(nums[left] === nums[left+1]) {left++;}
+                while(nums[right] === nums[right-1]) {right--;}
+
+                left++;
+                right--;
+            }
+            else if(nums[left]+nums[i]+nums[right] < 0){
+                while(nums[left] === nums[left+1]) {left++;}
+                left++;
+            }else if(nums[left]+nums[i]+nums[right] > 0){
+                while(nums[right] === nums[right-1]) {right--;}
+                right--;
+            }
+
+        }
     }
 
     return result;
@@ -23,6 +48,9 @@ var threeSum = function(nums) {
 // b = threeSum(a);
 // console.log(b);
 
-a = [-2,-1,0,0,0,1,2,3];
-b = threeSum(a);
+// a = [-2,-1,-1,-1,0,0,0,1,2,3];
+// b = threeSum(a);
+// console.log(b);
+
+b = threeSum([-2,-1,1,2]);
 console.log(b);
