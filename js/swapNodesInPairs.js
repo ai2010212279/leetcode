@@ -10,27 +10,21 @@
  * @return {ListNode}
  */
 var swapPairs = function(head) {
-    if(head == null) return head;
-    if(head.next == null) return head;
+    if(head == null || head.next == null) return head;
 
     var p1 = null;
     var p = head;
-    var newHead = null;
-    var lastNode = null;
+    var newHead = p.next;
+    var lastNode = p;
+
     while(p != null && p.next != null){
         p1 = p.next;
-        if(lastNode != null){
-            // console.log(lastNode.val);
-            lastNode.next = p1;
-        }
-        // console.log(p.val,p1.val);
+        lastNode.next = p1;
         p.next = p.next.next;
         p1.next = p;
         lastNode = p;
+
         p = p.next;
-        if(newHead == null){
-            newHead = p1;
-        }
     }
     return newHead;
 };
@@ -54,7 +48,7 @@ function initList (arr) {
     }
     return head;
 }
-a = [0,1,2,3];
+a = [0,1,2,3,4];
 b = [0,1,3,5,7,9,10,11,12];
 l1 = initList(a);
 // l2 = initList(b);
