@@ -4,6 +4,11 @@ Divide two integers without using multiplication, division and mod operator.
 
 If it is overflow, return MAX_INT.
 
+note:js没有unsign int ，而且js在进行位运算的时候使用的是32位有符号整数进行运算，所以2^31会溢出变为负数。
+因此，在溢出时，要进行回溯处理。
+除数不断左移，同时记录左移的长度（即：商）。当除数大于被除数时，右移一次，保证除数小于被除数。
+然后通过加法（加除数的初始值*2^n）保证除数小于等于被除数。当除数最接近被除数时，得到商的值。
+
  * @param {number} dividend
  * @param {number} divisor
  * @return {number}

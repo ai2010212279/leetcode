@@ -6,7 +6,9 @@ Given n pairs of parentheses, write a function to generate all combinations of w
 For example, given n = 3, a solution set is:
 
 "((()))", "(()())", "(())()", "()(())", "()()()"
-
+思路：类似生成一个三叉树，每次都在原先的基础上在左边，右边，外边添加一个括号。左边和右边添加括号
+后可能相等。去重即可。
+复杂度O(2^n);
  * @param {number} n
  * @return {string[]}
  */

@@ -3,7 +3,7 @@ No.5 Longest Palindromic Substring
     Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
 
     思路1：
-    1.找到最短的回文，如bb，aa，11
+    1.找到最短的回文，如bb，aa，11,a
     2.根据最短回文的位置向两边搜索回文的边界。
  * @param {string} s
  * @return {string}

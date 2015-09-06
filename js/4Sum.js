@@ -1,3 +1,6 @@
+/**
+这一题的思路和3sum类似，只是移动的内容添加了一个tail，复杂度上升很多。
+*/
 var fourSum = function(nums,target) {
     nums.sort(function(a,b){
         return a > b ? 1 : -1;

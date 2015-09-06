@@ -7,6 +7,7 @@ For example, given n = 3, a solution set is:
 
 "((()))", "(()())", "(())()", "()(())", "()()()"
 
+根据深度优先搜索来生成'('和')'。
  * @param {number} n
  * @return {string[]}
 

@@ -1,10 +1,9 @@
 /**
  * @param {string} digits
  * @return {string[]}
-
+思路：循环生成即可。
  时间复杂度在 O(3^n) - O(4^n)之间，最差为O(4^n)
  */
-
 
 
 var letterCombinations = function(digits) {

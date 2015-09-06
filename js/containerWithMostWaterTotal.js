@@ -6,6 +6,10 @@ Given n non-negative integers a1, a2, ..., an, where each represents a point at 
 
 Note: You may not slant the container.
 
+思路：
+容器的容积取决于height较小的一边。
+因此，为了找到更大的容积，height较小的一边就得向height更大的一边进行移动(left++,right--);
+移动后的容积与移动前的容积进行比较，保留大的即可。
  * @param {number[]} height
  * @return {number}
  */

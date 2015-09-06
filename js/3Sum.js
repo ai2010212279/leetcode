@@ -1,4 +1,7 @@
 /**
+
+思路：
+num[i],number[left],number[right]3个值相加，和大于target，right--;和小于target,left++;left >= right时，i++;遍历完成时可得到所有可能的组合。
  * @param {number[]} nums
  * @return {number[][]}
  */
