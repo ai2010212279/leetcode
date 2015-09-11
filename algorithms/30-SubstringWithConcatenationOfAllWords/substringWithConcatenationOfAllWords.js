@@ -15,7 +15,6 @@ You should return the indices: [0,9].
 时间复杂度大概是 O(m*n + m) m为words的长度,n是s的长度
 考虑最差情况：每次搜索子串相当于游标在i=n处进行了m次子串比较即:m*n，
 
-无法兼容 words中出现相同单词的情况，需要修改
  * @param {string} s
  * @param {string[]} words
  * @return {number[]}
