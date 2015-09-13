@@ -13,6 +13,7 @@ var combinationSum = function(candidates, target) {
         numbers.push(candidates[i]);
         getSum(i, candidates[i], target, numbers, candidates);
     }
+    result.keys();
     return result;
 };
 
@@ -41,5 +42,5 @@ var getSum = function(i, sum, target, numbers, candidates) {
     }
 }
 
-a = combinationSum([2], 1);
+a = combinationSum([3,2,1,5], 5);
 console.log(a);
