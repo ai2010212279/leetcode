@@ -13,8 +13,9 @@ var jump = function(nums){
 }
 
 var jumpToEnd = function(index,step,nums){
-    if(index == nums.length - 1) {
+    if(index == nums.length - 1 && resultSteps.indexOf(step) == -1) {
         resultSteps.push(step);
+        return ;
     }
     var jumpLength = nums[index];
     while(jumpLength > 0){
