@@ -14,18 +14,15 @@ var totalNQueens = function(n) {
 var getQueens = function(currentLine, nQueensSolve, lineTotal) {
     if (currentLine == lineTotal) {
         result++;
-        // console.log(nQueensSolve);
         return;
     }
     var startIndex = currentLine * lineTotal;
     var endIndex = (currentLine + 1) * lineTotal;
-    // console.log(startIndex,index,endIndex);
     for (var index = startIndex; index < endIndex; index++){
-       var nextQueensSolve = nQueensSolve.slice();
-       if (isValid(nextQueensSolve,currentLine,index,lineTotal)){
-            nextQueensSolve[index] = "Q";
-            // console.log(nextQueensSolve);
-            getQueens(currentLine + 1, nextQueensSolve, lineTotal);
+       if (isValid(nQueensSolve,currentLine,index,lineTotal)){
+            nQueensSolve[index] = "Q";
+            getQueens(currentLine + 1, nQueensSolve, lineTotal);
+            nQueensSolve[index] = '.';
        }
     }
 };
@@ -71,11 +68,11 @@ var isValid = function(nQueensSolve, currentLine, LineIndex,lineTotal) {
 
 var start = (new Date()).getTime();
 // totalNQueens(1);
-totalNQueens(10);
+totalNQueens(4);
 // totalNQueens(8);
 
-var end = (new Date()).getTime();
-console.log(end - start);
+// var end = (new Date()).getTime();
+// console.log(end - start);
 // a = [];
 // a[1] = 1;
 // a[3] = 3;

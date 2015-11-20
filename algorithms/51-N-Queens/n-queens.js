@@ -14,21 +14,24 @@ var solveNQueens = function(n) {
     }
 
     getQueens(0,nQueensSolve,n);
+    console.log(result);
     return result;
 };
 
 var getQueens = function(currentLine, nQueensSolve, maxIndex) {
     if (currentLine == maxIndex) {
-        result.push(nQueensSolve);
+        var finalNQueensSolve = nQueensSolve.slice();
+        result.push(finalNQueensSolve);
         return;
     }
 
     for (var index = 0; index < maxIndex; index++){
-       var nextQueensSolve = nQueensSolve.slice();
-       if (isValid(nextQueensSolve,currentLine,index)){
-            var strLine = nextQueensSolve[currentLine].replaceAt(index,"Q");
-            nextQueensSolve[currentLine] = strLine;
-            getQueens(currentLine + 1, nextQueensSolve, maxIndex);
+       if (isValid(nQueensSolve,currentLine,index)){
+            var oldStr = nQueensSolve[currentLine];
+            var strLine = nQueensSolve[currentLine].replaceAt(index,"Q");
+            nQueensSolve[currentLine] = strLine;
+            getQueens(currentLine + 1, nQueensSolve, maxIndex);
+            nQueensSolve[currentLine] = oldStr;
        }
     }
 };
@@ -68,6 +71,6 @@ String.prototype.replaceAt = function(index, str) {
     return this.substr(0, index) + str + this.substr(index + 1);
 };
 
-solveNQueens(9);
+solveNQueens();
 
 
