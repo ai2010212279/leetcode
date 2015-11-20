@@ -6,7 +6,6 @@
 var spiralOrder = function  (matrix) {
     var result = [];
     var xStep = 0;yStep = 1;
-    var level = 0;
     var xMax = matrix.length - 1,xMin = 0;
     var yMax = matrix[0].length - 1,yMin = 0;
     for (var i = 0, j = 0; i >= xMin && i <= xMax && j >= yMin && j <= yMax; i+=xStep,j+=yStep){
@@ -40,7 +39,7 @@ var spiralOrder = function  (matrix) {
             continue;
         }
     }
-    console.log(result);
+    // console.log(result);
     return result;
 };
 
