@@ -9,6 +9,8 @@
  * 4.此时遇到的是负数,如果当前游标的值大于最大值，说明遇到之前的和小于0的情况，此时最大值等于当前游标指向的值，和清零
  * ;重复第一步
  * 5.循环结束，返回最大值。
+ *
+ * error
  */
 var maxSubArray = function(nums) {
     var max = nums[0];
@@ -29,11 +31,13 @@ var maxSubArray = function(nums) {
             }
         }
         tempSum += nums[i];
+        console.log(max);
     }
     console.log(max);
     return max;
 };
 
-maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]);
-maxSubArray([-2, -1, 9]);
-maxSubArray([-2, -1, -3, 3, -10, -9]);
+// maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]);
+// maxSubArray([-2, -1, 9]);
+// maxSubArray([-2, -1, -3, 3, -10, -9]);
+maxSubArray([8,-19,5,-4,20]);
