@@ -2,21 +2,21 @@
  * @param {number[]} nums
  * @return {number}
  * O(N)
- * 思路：
- * 1.求和，如果当前和大于等于之前的和，说明遇到整数或者0，跳到第二步，否则挑到第四步；
- * 2.如果当前和大于最大值，那么最大值等于当前和；
- * 3.如果当前游标的值大于最大值，说明遇到之前的和小于0的情况，此时最大值等于当前游标指向的值，和清零；重复第一步
- * 4.此时遇到的是负数,如果当前游标的值大于最大值，说明遇到之前的和小于0的情况，此时最大值等于当前游标指向的值，和清零
- * ;重复第一步
- * 5.循环结束，返回最大值。
+ * 参考《编程珠玑》
+ * 将数组分为[0..i-1],[i]，当前遇到的最大值要么在[0..i-1]中，要么为[0..i-1]的和，要么为[i];
+ * 当[0..i-1]之和小于0时，当前最大值必定在[0..i-1]之中，而不是[0..i-1]之和，因此可以清空[0..i-1]之和，重新计算和;比较max,[i]
+ * 当[0..i-1]之和大于0，比较max,[i],[0..i-1]之和
  *
- * error
  */
 var maxSubArray = function(nums) {
     var max = nums[0];
     var tempSum = nums[0];
     for (var i = 1; i < nums.length; i++) {
-        if (tempSum + nums[i] >= tempSum) {
+        if (tempSum <= 0) {
+            tempSum = 0;
+        }
+
+        if (nums[i] >= 0) {
             if (tempSum + nums[i] > max) {
                 max = tempSum + nums[i];
             }
@@ -30,14 +30,19 @@ var maxSubArray = function(nums) {
                 tempSum = 0;
             }
         }
+
         tempSum += nums[i];
-        console.log(max);
     }
-    console.log(max);
+    // console.log(max);
     return max;
 };
 
-// maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]);
-// maxSubArray([-2, -1, 9]);
-// maxSubArray([-2, -1, -3, 3, -10, -9]);
-maxSubArray([8,-19,5,-4,20]);
+maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]);
+maxSubArray([-2, -1, 9]);
+maxSubArray([-2, -1, -3, 3, -10, -9]);
+maxSubArray([8,-19, 5, -4, 20]);
+maxSubArray([8, -19, 5]);
+maxSubArray([-1,-2,-3,-1]);
+maxSubArray([7,8,-20,1]);
+maxSubArray([2,-2,-2,0,-2,2,2]);
+maxSubArray([2,-1,0,0,-1,2,2,-2,2]);
