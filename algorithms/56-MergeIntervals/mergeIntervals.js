@@ -7,8 +7,10 @@ var merge = function(intervals) {
     intervals.sort(function(a,b){
         return a.start > b.start ? 1 : -1;
     });
+    // console.log(intervals);
     var flag = 1;
     for (var i = 0;i < intervals.length;i++){
+        flag = 1;
         for (var j = i + 1; j < intervals.length && flag == 1;){
             if(intervals[i].end >= intervals[j].start){
                 if (intervals[i].end < intervals[j].end){
@@ -20,7 +22,7 @@ var merge = function(intervals) {
             }
         }
     }
-    // console.log(intervals);
+    console.log(intervals);
     return intervals;
 };
 
@@ -38,19 +40,23 @@ var init = function(arr){
     return p;
 }
 
-a = [[1,3],[2,6],[8,10],[15,18]];
-b = init(a);
-merge(b);
+// a = [[1,3],[2,6],[8,10],[15,18]];
+// b = init(a);
+// merge(b);
 
-a = [[1,4],[2,3],[4,5]];
-b = init(a);
-merge(b);
+// a = [[1,4],[2,3],[4,5]];
+// b = init(a);
+// merge(b);
 
 
-a = [[1,4],[2,3],[5,6],[4,5]];
-b = init(a);
-merge(b);
+// a = [[1,4],[2,3],[5,6],[4,5]];
+// b = init(a);
+// merge(b);
 
-a = [[1,4],[1,5],[2,6]];
+// a = [[1,4],[1,5],[2,6]];
+// b = init(a);
+// merge(b);
+
+a = [[2,3],[2,2],[3,3],[1,3],[5,7],[2,2],[4,6]];
 b = init(a);
 merge(b);
