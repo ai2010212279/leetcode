@@ -9,7 +9,9 @@
  * @param {ListNode} head
  * @param {number} k
  * @return {ListNode}
- * compexity O(n) actually O(2n);
+ * time compexity O(n) , actually O(2n);
+ * space compexity O(k) k is the parameter "k";
+ *
  */
 var reverseKGroup = function(head, k) {
     var endNode = head;
