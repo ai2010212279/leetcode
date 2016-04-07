@@ -24,6 +24,7 @@ var C = function(max, low) {
     if (low == 0 || max == low){
         return 1;
     }
+    debugger;
     var lows = 1;
     for (var i = 2 ; i <= low; i++){
         lows *= i;
